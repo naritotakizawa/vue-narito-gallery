@@ -1,21 +1,27 @@
 <template>
   <div class="input-with-icon">
     <img src="@/assets/search.svg" class="icon" />
-    <input type="text" v-model="keyword" @change="search" />
+    <input type="text" v-model.lazy="keyword" />
   </div>
 </template>
 
 <script>
 export default {
   name: "Search",
+  computed: {
+    keyword: {
+      get() {
+        return this.$store.state.keyword;
+      },
+      set(value) {
+        this.$store.dispatch("updateKeyword", { keyword: value });
+      },
+    },
+  },
   data() {
-    return {
-      keyword: "",
-    };
+    return {};
   },
-  methods: {
-    search() {},
-  },
+  methods: {},
 };
 </script>
 
@@ -23,20 +29,21 @@ export default {
 /* フォーム関連 */
 .input-with-icon {
   position: relative;
-  width: 230px;
-  height: 35px;
+  width: 200px;
+  height: 37px;
 }
 .input-with-icon input {
   position: absolute;
-  width: 230px;
-  height: 35px;
-  border-radius: 4px;
-  border: solid 1px #999;
-  padding: 0 10px 0 28px;
+  width: 200px;
+  height: 37px;
+  border-radius: 8px;
+  border: none;
+  background-color: #efefef;
+  padding: 0 7px 0 30px;
   box-sizing: border-box;
   z-index: 1;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 12px;
 }
 .input-with-icon img {
   position: absolute;

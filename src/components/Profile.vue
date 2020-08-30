@@ -1,9 +1,14 @@
 <template>
   <section>
     <img src="@/assets/profile.png" alt="Narito Takizawa" />
-    <h1>Narito Takizawa's Gallery</h1>
+    <h1>Narito Takizawa</h1>
     <p>Webサイトやゲーム、デザイン、イラスト等を作成しています。</p>
-    <SNSIconList id="sns" />
+    <SNSIconList
+      id="sns"
+      facebook="https://www.facebook.com/toritoritorina"
+      twitter="https://twitter.com/toritoritorina"
+      email="mailto:toritoritorina@gmail.com"
+    />
   </section>
 </template>
 
@@ -20,27 +25,27 @@ export default {
 
 <style scoped>
 section {
-  text-align: center;
 }
 
 img {
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 90px;
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 27px;
   font-weight: 900;
-  margin: 10px 0;
+  margin: 3px 0;
+  font-family: roboto, sans-serif;
+  font-weight: 900;
+  font-style: normal;
 }
 
 p {
-  width: 300px;
-  text-align: center;
-  margin: 0 auto;
+  width: 230px;
 }
 
 #sns {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 </style>

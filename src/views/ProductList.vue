@@ -1,11 +1,14 @@
 <template>
   <div>
-    <Profile id="profile" />
-    <nav class="container">
-      <CategoryList id="category-list" />
-      <Search id="search" />
-    </nav>
-    <ThumbnailGrid id="thumbnails" class="container" />
+    <div v-show="!id">
+      <Profile id="profile" class="container" />
+      <nav class="container">
+        <CategoryList id="category-list" />
+        <Search id="search" />
+      </nav>
+      <ThumbnailGrid id="thumbnails" class="container" />
+    </div>
+    <router-view />
   </div>
 </template>
 
@@ -17,12 +20,19 @@ import Search from "@/components/Search.vue";
 
 export default {
   name: "ProductList",
+  props: ["id"],
   data() {
     return {};
   },
-  computed: {},
-
-  created() {},
+  mounted() {
+    document.title = "gallery.narito";
+    document
+      .querySelector('meta[name="description"]')
+      .setAttribute(
+        "content",
+        "gallery.naritoは、Narito Takizawaの作ったWebサイトやゲーム、デザイン、イラストなどの紹介サイトです。"
+      );
+  },
   methods: {},
   components: {
     ThumbnailGrid,
@@ -36,29 +46,17 @@ export default {
 
 <style scoped>
 #profile {
-  margin: 80px 0;
+  margin-top: -45px;
 }
 
 nav {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-}
-
-nav > * {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-#category-list {
-  justify-self: center;
-}
-
-#search {
-  justify-self: end;
+  grid-template-columns: auto auto;
+  column-gap: 60px;
+  justify-content: end;
 }
 
 #thumbnails {
-  margin-top: 35px;
+  margin-top: 27px;
 }
 </style>

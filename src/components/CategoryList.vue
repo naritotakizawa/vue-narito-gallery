@@ -1,37 +1,40 @@
 <template>
   <ul>
-    <li class="category" :class="{ select: isSelectedCategory(0) }">
-      <a class="name" @click.prevent="selectCategory(0)">ALL</a>
+    <li class="category" :class="{ select: isSelectedCategory({id:0, name: 'ALL'}) }">
+      <a class="name" @click.prevent="selectCategory({id: 0, name: 'ALL'})" href="#">ALL</a>
       <span class="count">{{ productCount }}</span>
     </li>
     <li
       v-for="category in categories"
       :key="category.id"
       class="category"
-      :class="{ select: isSelectedCategory(category.id) }"
+      :class="{ select: isSelectedCategory(category) }"
     >
-      <a href class="name" @click.prevent="selectCategory(category.id)">{{ category.name }}</a>
+      <a href="#" class="name" @click.prevent="selectCategory(category)">{{ category.name }}</a>
       <span class="count">{{ category.product_count }}</span>
     </li>
   </ul>
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "CategoryList",
   computed: {
-    ...mapState({
-      categories: (state) => state.category.list,
-    }),
+    ...mapState(["categories"]),
     ...mapGetters(["isSelectedCategory", "productCount"]),
   },
   created() {
     this.loadCategories();
   },
   methods: {
-    ...mapMutations(["selectCategory"]),
+    selectCategory(category) {
+      this.$store
+        .dispatch("selectCategory", { category })
+        .catch((err) => Promise.reject(err))
+        .then(() => {});
+    },
 
     loadCategories() {
       this.$store
@@ -54,25 +57,24 @@ li {
 }
 
 .category {
-  margin-right: 30px;
+  padding: 8px 16px;
+  font-family: roboto, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  border-radius: 8px;
 }
 
-.category::after {
-  content: "";
-  display: block;
-  margin-top: 5px;
-  height: 1px;
-  width: 0;
-  transition: all 0.3s ease;
+.select {
+  background-color: #766252;
+  color: #fff;
 }
 
-.select::after {
-  width: 100%;
-  background-color: #999;
+.select > a.name {
+  color: #fff;
 }
 
 .category > .name {
-  font-size: 21px;
+  font-size: 16px;
   text-decoration: none;
   color: #333;
   display: inline-block;
@@ -82,7 +84,7 @@ li {
 .category > .count {
   font-size: 10px;
   display: inline-block;
-  margin-left: 5px;
+  margin-left: 3px;
   vertical-align: middle;
 }
 </style>

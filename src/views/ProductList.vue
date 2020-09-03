@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="container">
     <div v-show="!id">
-      <Profile id="profile" class="container" />
-      <nav class="container">
+      <Profile id="profile" />
+      <nav>
         <CategoryList id="category-list" />
         <Search id="search" />
       </nav>
-      <ThumbnailGrid id="thumbnails" class="container" />
+      <ThumbnailGrid id="thumbnails" />
     </div>
     <router-view />
   </div>
@@ -46,14 +46,29 @@ export default {
 
 <style scoped>
 #profile {
-  margin-top: -45px;
+  width: 230px;
+  margin: -45px auto 0 auto;
+  text-align: center;
 }
 
+@media (min-width: 1200px) {
+  #profile {
+    margin: -45px 0 0 0;
+    text-align: left;
+  }
+}
 nav {
-  display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 60px;
-  justify-content: end;
+  margin-top: 45px;
+}
+
+@media (min-width: 1200px) {
+  nav {
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 60px;
+    justify-content: end;
+  }
 }
 
 #thumbnails {

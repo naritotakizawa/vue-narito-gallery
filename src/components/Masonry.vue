@@ -45,12 +45,10 @@ export default {
 </script>
 
 <style scoped>
-#masonry {
-}
-
 #masonry > * {
   margin-bottom: 20px;
   float: left;
+  max-width: 100%;
 }
 
 img {

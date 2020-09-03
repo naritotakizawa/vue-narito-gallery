@@ -43,21 +43,31 @@ export default {
 </script>
 
 <style scoped>
-section {
-  display: grid;
-  grid-template-columns: 230px 900px;
-  column-gap: 25px;
-  grid-template-rows: 1fr;
+@media (min-width: 1200px) {
+  section {
+    display: grid;
+    grid-template-columns: 230px 900px;
+    column-gap: 25px;
+    grid-template-rows: 1fr;
+  }
 }
 
 .product-header {
-  margin-top: -45px;
-  position: sticky;
-  top: 25px;
-  align-self: start;
+  width: 230px;
+  margin: -45px auto 0 auto;
+  text-align: center;
 }
 
+@media (min-width: 1200px) {
+  .product-header {
+    text-align: left;
+    position: sticky;
+    top: 25px;
+    align-self: start;
+  }
+}
 .masonry {
   margin: 48px auto 0 auto;
+  max-width: 100%;
 }
 </style>

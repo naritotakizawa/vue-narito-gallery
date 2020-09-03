@@ -41,9 +41,11 @@ a:hover {
   opacity: 0.5;
 }
 
-@media (min-width: 1440px) {
+.container {
+  margin: 0 10px;
+}
+@media (min-width: 1200px) {
   .container {
-    /*max-width: 1756px;*/
     width: 1155px;
     margin: 0 auto;
   }

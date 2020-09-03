@@ -5,12 +5,15 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "mock": "vue-cli-service serve --mode mock"
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "axios-mock-adapter": "^1.18.2",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
+    "vue-analytics": "^5.22.1",
     "vue-masonry": "^0.11.8",
     "vue-router": "^3.2.0",
     "vuex": "^3.5.1"

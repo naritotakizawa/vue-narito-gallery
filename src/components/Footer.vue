@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class="container">
     <p>Copyright 2020 Narito Takizawa.</p>
   </footer>
 </template>
@@ -21,13 +21,11 @@ export default {
 <style scoped>
 footer {
   height: 60px;
-  display: grid;
-  grid-template-columns: 1fr 1155px 1fr;
+  display: flex;
+  align-items: center;
 }
 
 p {
-  grid-column: 2;
-  align-self: center;
   font-family: professor, sans-serif;
   font-size: 16px;
   font-weight: 400;

@@ -25,6 +25,13 @@ header {
   height: 170px;
   padding-top: 30px;
   background-color: #766252;
+  text-align: center;
+}
+
+@media (min-width: 1200px) {
+  header {
+    text-align: left;
+  }
 }
 
 a {

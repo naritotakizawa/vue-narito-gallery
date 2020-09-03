@@ -46,9 +46,6 @@ export default {
 </script>
 
 <style scoped>
-header {
-}
-
 figure {
   line-height: 1;
 }
@@ -73,7 +70,6 @@ h1 {
 
 .text {
   margin-top: 10px;
-  widows: 230px;
 }
 
 #sns {

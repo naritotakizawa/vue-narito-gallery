@@ -24,9 +24,6 @@ export default {
 </script>
 
 <style scoped>
-section {
-}
-
 img {
   width: 90px;
   height: 90px;
@@ -39,10 +36,6 @@ h1 {
   font-family: roboto, sans-serif;
   font-weight: 900;
   font-style: normal;
-}
-
-p {
-  width: 230px;
 }
 
 #sns {

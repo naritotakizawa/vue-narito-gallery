@@ -56,8 +56,4 @@ img {
   width: 100%;
   height: auto;
 }
-
->>> p + p {
-  margin-top: 0.5em;
-}
 </style>

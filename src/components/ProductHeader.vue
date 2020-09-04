@@ -75,4 +75,14 @@ h1 {
 #sns {
   margin-top: 10px;
 }
+
+>>> p + p {
+  margin-top: 0.5em;
+}
+
+>>> ul {
+  margin-top: 0.5em;
+  padding: 0;
+  list-style-type: none;
+}
 </style>

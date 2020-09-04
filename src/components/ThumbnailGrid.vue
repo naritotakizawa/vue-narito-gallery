@@ -1,17 +1,16 @@
 <template>
   <section>
     <transition-group tag="div" class="products">
-      <a
-        href="#"
+      <router-link
+        :to="{name: 'detail', params: { id: product.id }}"
         v-for="product in products.results"
         :key="product.id"
         :title="product.title"
-        @click.prevent="clickProduct(product)"
       >
         <figure>
           <img :src="product.thumbnail" :alt="product.title" />
         </figure>
-      </a>
+      </router-link>
     </transition-group>
 
     <nav v-if="products.next">
@@ -42,12 +41,6 @@ export default {
         .dispatch("moreProducts")
         .catch((err) => Promise.reject(err))
         .then(() => {});
-    },
-    clickProduct(product) {
-      this.$router.push({
-        name: "detail",
-        params: { id: product.id },
-      });
     },
   },
 };

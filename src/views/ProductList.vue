@@ -38,9 +38,9 @@ export default {
 
     // トップからトップ、検索やカテゴリ変更、ページ移動時
     if (from.name === "home" && to.name === "home") {
-      const fromCategory = parseInt(from.query.category);
-      const fromPage = parseInt(from.query.page);
-      const fromKeyword = from.query.keyword;
+      const fromCategory = parseInt(from.query.category || 0);
+      const fromPage = parseInt(from.query.page || 1);
+      const fromKeyword = from.query.keyword || "";
       const toCategory = parseInt(to.query.category);
       const toPage = parseInt(to.query.page);
       const toKeyword = to.query.keyword;

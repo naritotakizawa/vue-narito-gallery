@@ -10,9 +10,9 @@ if (JSON.parse(process.env.VUE_APP_NARITOGALLERY_USE_MOCK)) {
 
 const api = {
   product: {
-    list: (keyword, category) => {
+    list: (keyword, category, page) => {
       return new Promise((resolve, reject) => {
-        client.get(`/products/?keyword=${keyword}&category=${category}`)
+        client.get(`/products/?keyword=${keyword}&category=${category}&page=${page}`)
           .then(res => resolve({ data: res }))
           .catch(err => {
             console.log(err)
@@ -20,15 +20,7 @@ const api = {
           })
       })
     },
-    url: (url) => {
-      return new Promise((resolve, reject) => {
-        client.get(url)
-          .then(res => resolve({ data: res }))
-          .catch(err => {
-            reject(new Error(err.response.data.message || err.message))
-          })
-      })
-    },
+
     retrieve: (id) => {
       return new Promise((resolve, reject) => {
         client.get(`/products/${id}`)

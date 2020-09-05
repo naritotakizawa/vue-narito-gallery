@@ -14,7 +14,7 @@
     </transition-group>
 
     <nav v-if="products.next">
-      <a href="#" @click.prevent="loadMore">Load More</a>
+      <router-link :to="getNextURL">Load More</router-link>
     </nav>
   </section>
 </template>
@@ -27,20 +27,17 @@ export default {
   name: "ThumbnailGrid",
 
   computed: {
-    ...mapState(["products"]),
-  },
-  created() {
-    this.$store
-      .dispatch("loadProducts")
-      .catch((err) => Promise.reject(err))
-      .then(() => {});
-  },
-  methods: {
-    loadMore() {
-      this.$store
-        .dispatch("moreProducts")
-        .catch((err) => Promise.reject(err))
-        .then(() => {});
+    ...mapState(["products", "pageNumber", "keyword", "selectedCategory"]),
+
+    getNextURL() {
+      return this.$router.resolve({
+        name: "home",
+        query: {
+          keyword: this.keyword,
+          category: this.selectedCategory.id,
+          page: this.pageNumber + 1,
+        },
+      }).route.fullPath;
     },
   },
 };

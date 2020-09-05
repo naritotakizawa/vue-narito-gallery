@@ -31,9 +31,7 @@ export default {
           .setAttribute("content", "");
       });
   },
-  destroyed() {
-    this.$store.commit("updateCurrentProduct", { data: null });
-  },
+
   methods: {},
   components: {
     Masonry,

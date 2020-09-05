@@ -9,12 +9,15 @@ export default new Vuex.Store({
     state: {
 
         products: {
+            results: [],
+            next: null,
         },
         categories: [
         ],
         selectedCategory: { id: 0, name: 'ALL' },
         currentProduct: null,
         keyword: '',
+        pageNumber: 1,
     },
 
     getters: {
@@ -25,7 +28,7 @@ export default new Vuex.Store({
             return state.categories.reduce(
                 (prev, category) => prev + category.product_count
                 , 0)
-        }
+        },
     },
 
     mutations: {
@@ -55,21 +58,22 @@ export default new Vuex.Store({
         updateCurrentProduct(state, payload) {
             state.currentProduct = payload.data
         },
+        updatePageNumber(state, payload) {
+            state.pageNumber = payload.page
+        }
     },
     actions: {
-        selectCategory: ({ commit, dispatch }, payload) => {
-            commit('updateSelectedCategory', payload)
-            return dispatch('loadProducts')
-        },
-        updateKeyword: ({ commit, dispatch }, payload) => {
-            commit('updateKeyword', payload)
-            dispatch('loadCategories')
-            return dispatch('loadProducts')
-        },
         loadProducts: ({ commit, state }) => {
-            return api.product.list(state.keyword, state.selectedCategory.id)
+            return api.product.list(state.keyword, state.selectedCategory.id, state.pageNumber)
                 .then(({ data }) => {
                     commit('updateProductList', data)
+                })
+                .catch(err => { throw err })
+        },
+        addProducts: ({ commit, state }) => {
+            return api.product.list(state.keyword, state.selectedCategory.id, state.pageNumber)
+                .then(({ data }) => {
+                    commit('addProductList', data)
                 })
                 .catch(err => { throw err })
         },
@@ -77,13 +81,6 @@ export default new Vuex.Store({
             return api.product.retrieve(payload.id)
                 .then(({ data }) => {
                     commit('updateCurrentProduct', data)
-                })
-                .catch(err => { throw err })
-        },
-        moreProducts: ({ commit, state }) => {
-            return api.product.url(state.products.next)
-                .then(({ data }) => {
-                    commit('addProductList', data)
                 })
                 .catch(err => { throw err })
         },

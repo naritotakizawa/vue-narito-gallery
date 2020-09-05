@@ -22,25 +22,19 @@ import { mapState, mapGetters } from "vuex";
 export default {
   name: "CategoryList",
   computed: {
-    ...mapState(["categories"]),
+    ...mapState(["categories", "keyword"]),
     ...mapGetters(["isSelectedCategory", "productCount"]),
-  },
-  created() {
-    this.loadCategories();
   },
   methods: {
     selectCategory(category) {
-      this.$store
-        .dispatch("selectCategory", { category })
-        .catch((err) => Promise.reject(err))
-        .then(() => {});
-    },
-
-    loadCategories() {
-      this.$store
-        .dispatch("loadCategories")
-        .catch((err) => Promise.reject(err))
-        .then(() => {});
+      this.$router.push({
+        name: "home",
+        query: {
+          keyword: this.keyword,
+          category: category.id,
+          page: 1,
+        },
+      });
     },
   },
 };

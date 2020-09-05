@@ -6,22 +6,28 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "Search",
   computed: {
+    ...mapState(["selectedCategory"]),
     keyword: {
       get() {
         return this.$store.state.keyword;
       },
       set(value) {
-        this.$store.dispatch("updateKeyword", { keyword: value });
+        this.$router.push({
+          name: "home",
+          query: {
+            keyword: value,
+            category: this.selectedCategory.id,
+            page: 1,
+          },
+        });
       },
     },
   },
-  data() {
-    return {};
-  },
-  methods: {},
 };
 </script>
 

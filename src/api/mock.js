@@ -10,14 +10,14 @@ const products1 = {
         { id: 2, title: 'マイクロブタカフェ2', thumbnail: 'https://narito.ninja/uploader/home/public/2.jpg' },
         { id: 3, title: 'マイクロブタカフェ3', thumbnail: 'https://narito.ninja/uploader/home/public/3.jpg' },
         { id: 4, title: 'マイクロブタカフェ4', thumbnail: 'https://narito.ninja/uploader/home/public/4.jpg' },
-        { id: 1, title: 'マイクロブタカフェ1', thumbnail: 'https://narito.ninja/uploader/home/public/5.jpg' },
-        { id: 2, title: 'マイクロブタカフェ2', thumbnail: 'https://narito.ninja/uploader/home/public/6.jpg' },
-        { id: 3, title: 'マイクロブタカフェ3', thumbnail: 'https://narito.ninja/uploader/home/public/7.jpg' },
-        { id: 4, title: 'マイクロブタカフェ4', thumbnail: 'https://narito.ninja/uploader/home/public/8.jpg' },
-        { id: 1, title: 'マイクロブタカフェ1', thumbnail: 'https://narito.ninja/uploader/home/public/9.jpg' },
-        { id: 2, title: 'マイクロブタカフェ2', thumbnail: 'https://narito.ninja/uploader/home/public/10.jpg' },
-        { id: 3, title: 'マイクロブタカフェ3', thumbnail: 'https://narito.ninja/uploader/home/public/11.jpg' },
-        { id: 4, title: 'マイクロブタカフェ4', thumbnail: 'https://narito.ninja/uploader/home/public/12.jpg' },
+        { id: 5, title: 'マイクロブタカフェ1', thumbnail: 'https://narito.ninja/uploader/home/public/5.jpg' },
+        { id: 6, title: 'マイクロブタカフェ2', thumbnail: 'https://narito.ninja/uploader/home/public/6.jpg' },
+        { id: 7, title: 'マイクロブタカフェ3', thumbnail: 'https://narito.ninja/uploader/home/public/7.jpg' },
+        { id: 8, title: 'マイクロブタカフェ4', thumbnail: 'https://narito.ninja/uploader/home/public/8.jpg' },
+        { id: 9, title: 'マイクロブタカフェ1', thumbnail: 'https://narito.ninja/uploader/home/public/9.jpg' },
+        { id: 10, title: 'マイクロブタカフェ2', thumbnail: 'https://narito.ninja/uploader/home/public/10.jpg' },
+        { id: 11, title: 'マイクロブタカフェ3', thumbnail: 'https://narito.ninja/uploader/home/public/11.jpg' },
+        { id: 12, title: 'マイクロブタカフェ4', thumbnail: 'https://narito.ninja/uploader/home/public/12.jpg' },
     ]
 }
 
@@ -26,14 +26,14 @@ const products2 = {
     next: null,
     previous: null,
     results: [
-        { id: 1, title: 'マイクロブタカフェ1', thumbnail: 'https://narito.ninja/uploader/home/public/1.jpg' },
-        { id: 2, title: 'マイクロブタカフェ2', thumbnail: 'https://narito.ninja/uploader/home/public/2.jpg' },
-        { id: 3, title: 'マイクロブタカフェ3', thumbnail: 'https://narito.ninja/uploader/home/public/3.jpg' },
-        { id: 4, title: 'マイクロブタカフェ4', thumbnail: 'https://narito.ninja/uploader/home/public/4.jpg' },
-        { id: 1, title: 'マイクロブタカフェ1', thumbnail: 'https://narito.ninja/uploader/home/public/5.jpg' },
-        { id: 2, title: 'マイクロブタカフェ2', thumbnail: 'https://narito.ninja/uploader/home/public/6.jpg' },
-        { id: 3, title: 'マイクロブタカフェ3', thumbnail: 'https://narito.ninja/uploader/home/public/7.jpg' },
-        { id: 4, title: 'マイクロブタカフェ4', thumbnail: 'https://narito.ninja/uploader/home/public/8.jpg' },
+        { id: 13, title: 'マイクロブタカフェ1', thumbnail: 'https://narito.ninja/uploader/home/public/1.jpg' },
+        { id: 14, title: 'マイクロブタカフェ2', thumbnail: 'https://narito.ninja/uploader/home/public/2.jpg' },
+        { id: 15, title: 'マイクロブタカフェ3', thumbnail: 'https://narito.ninja/uploader/home/public/3.jpg' },
+        { id: 16, title: 'マイクロブタカフェ4', thumbnail: 'https://narito.ninja/uploader/home/public/4.jpg' },
+        { id: 17, title: 'マイクロブタカフェ1', thumbnail: 'https://narito.ninja/uploader/home/public/5.jpg' },
+        { id: 18, title: 'マイクロブタカフェ2', thumbnail: 'https://narito.ninja/uploader/home/public/6.jpg' },
+        { id: 19, title: 'マイクロブタカフェ3', thumbnail: 'https://narito.ninja/uploader/home/public/7.jpg' },
+        { id: 20, title: 'マイクロブタカフェ4', thumbnail: 'https://narito.ninja/uploader/home/public/8.jpg' },
     ]
 }
 
@@ -202,13 +202,28 @@ const product4 = {
 export default {
     run: client => {
         const mock = new MockAdapter(client);
-        mock.onGet('/products/?keyword=&category=0').reply(200, products1);
+        mock.onGet('/products/?keyword=&category=0&page=1').reply(200, products1);
         mock.onGet('/products/?keyword=&category=0&page=2').reply(200, products2);
         mock.onGet('/categories/?keyword=&category=0').reply(200, categories);
         mock.onGet('/products/1').reply(200, product1);
         mock.onGet('/products/2').reply(200, product2);
         mock.onGet('/products/3').reply(200, product3);
         mock.onGet('/products/4').reply(200, product4);
-
+        mock.onGet('/products/5').reply(200, product1);
+        mock.onGet('/products/6').reply(200, product2);
+        mock.onGet('/products/7').reply(200, product3);
+        mock.onGet('/products/8').reply(200, product4);
+        mock.onGet('/products/9').reply(200, product1);
+        mock.onGet('/products/10').reply(200, product2);
+        mock.onGet('/products/11').reply(200, product3);
+        mock.onGet('/products/12').reply(200, product4);
+        mock.onGet('/products/13').reply(200, product1);
+        mock.onGet('/products/14').reply(200, product2);
+        mock.onGet('/products/15').reply(200, product3);
+        mock.onGet('/products/16').reply(200, product4);
+        mock.onGet('/products/17').reply(200, product1);
+        mock.onGet('/products/18').reply(200, product2);
+        mock.onGet('/products/19').reply(200, product3);
+        mock.onGet('/products/20').reply(200, product4);
     }
 }

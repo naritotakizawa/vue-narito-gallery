@@ -28,12 +28,6 @@ header {
   text-align: center;
 }
 
-@media (min-width: 1200px) {
-  header {
-    text-align: left;
-  }
-}
-
 a {
   display: block;
   color: #fff;

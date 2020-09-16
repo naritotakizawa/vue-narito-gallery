@@ -118,27 +118,29 @@ export default {
 <style scoped>
 #profile {
   width: 230px;
-  margin: -45px auto 0 auto;
+  margin: -45px auto 42px auto;
   text-align: center;
 }
 
-@media (min-width: 1200px) {
-  #profile {
-    margin: -45px 0 0 0;
-    text-align: left;
-  }
-}
-nav {
-  margin-top: 45px;
+#search {
+  margin-top: 16px;
 }
 
 @media (min-width: 1200px) {
   nav {
-    margin-top: 0;
     display: grid;
-    grid-template-columns: auto auto;
-    column-gap: 60px;
+    grid-template-columns: 1fr 1fr;
     justify-content: end;
+  }
+
+  #category-list {
+    grid-column: 1;
+  }
+
+  #search {
+    grid-column: 2;
+    justify-self: end;
+    margin-top: 0;
   }
 }
 

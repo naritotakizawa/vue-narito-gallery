@@ -70,6 +70,8 @@ h1 {
 
 .text {
   margin-top: 10px;
+  text-align: justify;
+  text-justify: inter-ideograph;
 }
 
 #sns {

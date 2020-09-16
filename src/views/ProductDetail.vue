@@ -49,7 +49,7 @@ export default {
 <style scoped>
 .product-header {
   width: 300px;
-  margin: -45px auto 40px auto;
+  margin: 40px auto 40px auto;
   text-align: center;
 }
 

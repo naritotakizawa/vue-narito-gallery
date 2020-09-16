@@ -118,12 +118,19 @@ export default {
 <style scoped>
 #profile {
   width: 230px;
-  margin: -45px auto 42px auto;
+  margin: 40px auto 40px auto;
   text-align: center;
 }
 
 #search {
   margin-top: 16px;
+}
+
+nav {
+  border-bottom: solid 1px #ccc;
+  padding-bottom: 16px;
+  border-top: solid 1px #ccc;
+  padding-top: 16px;
 }
 
 @media (min-width: 1200px) {
@@ -145,6 +152,6 @@ export default {
 }
 
 #thumbnails {
-  margin-top: 27px;
+  margin-top: 32px;
 }
 </style>

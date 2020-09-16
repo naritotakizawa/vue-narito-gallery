@@ -22,10 +22,12 @@ export default {
 
 <style scoped>
 header {
-  height: 170px;
-  padding-top: 30px;
+  height: 80px;
   background-color: #766252;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 a {

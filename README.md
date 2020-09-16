@@ -1,5 +1,5 @@
 # vue-narito-gallery
-ギャラリーサイト。Vue製
+ギャラリーサイト。Vue製。実際に動いている感じは[こちら](https://gallery.narito.ninja)
 
 ## とりあえず動かしてみたい方
 

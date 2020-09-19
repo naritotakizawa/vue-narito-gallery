@@ -1,22 +1,41 @@
 <template>
   <div class="container">
     <div v-show="!id">
-      <Profile id="profile" />
-      <nav>
-        <CategoryList id="category-list" />
-        <Search id="search" />
+      <nav id="filter">
+        <CategoryList
+          id="category-list"
+          @click="filterProductsByCategory"
+          :categories="categories"
+          :initial="selectedCategory"
+        />
+        <Search id="search" @change="searchProducts" :initial="keyword" />
       </nav>
-      <ThumbnailGrid id="thumbnails" />
+
+      <transition-group tag="div" class="products">
+        <router-link
+          :to="{name: 'detail', params: { id: product.id }}"
+          v-for="product in products.results"
+          :key="product.id"
+          :title="product.title"
+        >
+          <figure>
+            <img :src="product.thumbnail" :alt="product.title" />
+          </figure>
+        </router-link>
+      </transition-group>
+
+      <nav v-if="products.next" id="load-more">
+        <router-link :to="getNextURL">もっと見る</router-link>
+      </nav>
     </div>
     <router-view />
   </div>
 </template>
 
 <script>
-import Profile from "@/components/Profile.vue";
-import ThumbnailGrid from "@/components/ThumbnailGrid.vue";
-import CategoryList from "@/components/CategoryList.vue";
 import Search from "@/components/Search.vue";
+import CategoryList from "@/components/CategoryList.vue";
+import api from "@/api";
 
 export default {
   name: "ProductList",
@@ -24,10 +43,8 @@ export default {
   beforeRouteUpdate(to, from, next) {
     next();
 
-    // 詳細ページからトップへ戻った際は、作品の読み直しはせず
-    // 選択作品だけnullにし、ダイアログ部分を閉じる
+    // 詳細ページからトップへ戻った際。なにもしない
     if (from.name === "detail" && to.name === "home") {
-      this.$store.commit("updateCurrentProduct", { data: null });
       return;
     }
 
@@ -52,14 +69,14 @@ export default {
         fromCategory === toCategory &&
         fromPage !== toPage
       ) {
-        // 前ページへもどった、ブラウザバックのとき、何もしない
+        // page=2からpage=1など、ブラウザバックで前ページへもどったときは何もしない
         if (fromPage > toPage) {
           return;
+
+          // page=1からpage=2に移動など
         } else {
-          this.$store.commit("updatePageNumber", {
-            page: parseInt(this.$route.query.page),
-          });
-          this.$store.dispatch("addProducts");
+          this.pageNumber = parseInt(this.$route.query.page);
+          this.addProducts();
           return;
         }
       }
@@ -68,32 +85,107 @@ export default {
       // カテゴリの変更時にカテゴリを新しく取得する(loadCategories)必要は本来ないが
       // 面倒なので処理を共通にしている
       this.setDataFromURLParameter();
-      this.$store.dispatch("loadProducts");
-      this.$store.dispatch("loadCategories");
+      this.loadProducts();
+      this.loadCategories();
     }
   },
   data() {
-    return {};
+    return {
+      products: {
+        results: [],
+        next: null,
+      },
+      categories: [],
+      selectedCategory: { id: 0, name: "ALL" },
+      keyword: "",
+      pageNumber: 1,
+    };
   },
-  methods: {
-    // URLのパラメータをもとに、キーワードやカテゴリなどをストアにセット
-    setDataFromURLParameter() {
-      this.$store.commit("updateKeyword", {
-        keyword: this.$route.query.keyword || "",
-      });
-      this.$store.commit("updateSelectedCategory", {
-        category: { id: parseInt(this.$route.query.category || 0) },
-      });
-
-      this.$store.commit("updatePageNumber", {
-        page: parseInt(this.$route.query.page || 1),
-      });
+  computed: {
+    getNextURL() {
+      return this.$router.resolve({
+        name: "home",
+        query: {
+          keyword: this.keyword,
+          category: this.selectedCategory.id,
+          page: this.pageNumber + 1,
+        },
+      }).route.fullPath;
     },
   },
+  methods: {
+    // URLのパラメータをもとに、キーワードやカテゴリなどをdataにセット
+    setDataFromURLParameter() {
+      this.keyword = this.$route.query.keyword || "";
+      this.selectedCategory = { id: parseInt(this.$route.query.category || 0) };
+      this.pageNumber = parseInt(this.$route.query.page || 1);
+    },
+
+    searchProducts(keyword) {
+      this.$router.push({
+        name: "home",
+        query: {
+          keyword: keyword,
+          category: this.selectedCategory.id,
+          page: 1,
+        },
+      });
+    },
+    filterProductsByCategory(category) {
+      this.$router.push({
+        name: "home",
+        query: {
+          keyword: this.keyword,
+          category: category.id,
+          page: 1,
+        },
+      });
+    },
+
+    loadProducts() {
+      api.product
+        .list(this.keyword, this.selectedCategory.id, this.pageNumber)
+        .then((res) => {
+          this.products = res.data;
+        })
+        .catch((err) => {
+          throw err;
+        });
+    },
+    addProducts() {
+      api.product
+        .list(this.keyword, this.selectedCategory.id, this.pageNumber)
+        .then((res) => {
+          for (const product of res.data.results) {
+            this.products.results.push(product);
+          }
+          if (res.data.next) {
+            this.products.next = res.data.next;
+          } else {
+            this.products.next = null;
+          }
+        })
+        .catch((err) => {
+          throw err;
+        });
+    },
+
+    loadCategories() {
+      api.category
+        .list(this.keyword, this.selectedCategory.id)
+        .then((res) => {
+          this.categories = res.data;
+        })
+        .catch((err) => {
+          throw err;
+        });
+    },
+  },
+
   created() {
     this.setDataFromURLParameter();
-    this.$store.dispatch("loadProducts");
-    this.$store.dispatch("loadCategories");
+    this.loadProducts();
+    this.loadCategories();
   },
   mounted() {
     document.title = "gallery.narito";
@@ -106,52 +198,70 @@ export default {
   },
 
   components: {
-    ThumbnailGrid,
-    Profile,
-    CategoryList,
     Search,
+    CategoryList,
   },
 };
 </script>
 
 
 <style scoped>
-#profile {
-  width: 230px;
-  margin: 40px auto 40px auto;
-  text-align: center;
+#filter {
+  margin-top: 48px;
 }
 
-#search {
-  margin-top: 16px;
-}
-
-nav {
-  border-bottom: solid 1px #ccc;
-  padding-bottom: 16px;
-  border-top: solid 1px #ccc;
-  padding-top: 16px;
-}
-
-@media (min-width: 1200px) {
-  nav {
+@media (min-width: 1000px) {
+  #filter {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     justify-content: end;
   }
 
   #category-list {
     grid-column: 1;
+    justify-self: center;
+    grid-row: 1;
   }
 
   #search {
-    grid-column: 2;
+    grid-column: 1;
     justify-self: end;
+    grid-row: 1;
     margin-top: 0;
   }
 }
 
-#thumbnails {
-  margin-top: 32px;
+.products {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 12px;
+}
+
+img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+#load-more {
+  margin-top: 48px;
+  display: flex;
+  justify-content: center;
+}
+
+#load-more > a {
+  color: #333;
+  text-decoration: none;
+  border-bottom: double 5px #333;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.6s ease;
+}
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>

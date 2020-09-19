@@ -1,60 +1,52 @@
 <template>
-  <div class="input-with-icon">
-    <img src="@/assets/search.svg" class="icon" />
-    <input type="text" v-model.lazy="keyword" />
+  <div>
+    <img src="@/assets/search.svg" />
+    <input type="text" :value="value" @change="change" />
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 export default {
   name: "Search",
-  computed: {
-    ...mapState(["selectedCategory"]),
-    keyword: {
-      get() {
-        return this.$store.state.keyword;
-      },
-      set(value) {
-        this.$router.push({
-          name: "home",
-          query: {
-            keyword: value,
-            category: this.selectedCategory.id,
-            page: 1,
-          },
-        });
-      },
+  props: ["initial"],
+  data() {
+    return {
+      value: this.initial ? this.initial : "",
+    };
+  },
+  methods: {
+    change(event) {
+      const value = event.target.value;
+      this.value = value;
+      this.$emit("change", value);
     },
   },
 };
 </script>
 
 <style scoped>
-/* フォーム関連 */
-.input-with-icon {
+div {
   position: relative;
-  width: 200px;
-  height: 37px;
+  width: 150px;
+  height: 24px;
 }
-.input-with-icon input {
+input {
   position: absolute;
-  width: 200px;
-  height: 37px;
-  border-radius: 8px;
-  border: none;
-  background-color: #efefef;
-  padding: 0 7px 0 30px;
+  width: 150px;
+  height: 24px;
+  border-radius: 4px;
+  border: solid 1px #ccc;
+  background-color: transparent;
+  padding: 0 7px 0 26px;
   box-sizing: border-box;
   z-index: 1;
   font-family: inherit;
   font-size: 12px;
 }
-.input-with-icon img {
+img {
   position: absolute;
   left: 8px;
-  top: 12px;
+  top: 7px;
   z-index: 2;
 }
 </style>

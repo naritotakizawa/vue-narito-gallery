@@ -8,41 +8,20 @@ if (JSON.parse(process.env.VUE_APP_NARITOGALLERY_USE_MOCK)) {
   mock.run(client)
 }
 
-const api = {
+export default {
   product: {
     list: (keyword, category, page) => {
-      return new Promise((resolve, reject) => {
-        client.get(`/products/?keyword=${keyword}&category=${category}&page=${page}`)
-          .then(res => resolve({ data: res }))
-          .catch(err => {
-            console.log(err)
-            reject(new Error(err.response.data.message || err.message))
-          })
-      })
+      return client.get(`/products/?keyword=${keyword}&category=${category}&page=${page}`)
     },
 
     retrieve: (id) => {
-      return new Promise((resolve, reject) => {
-        client.get(`/products/${id}`)
-          .then(res => resolve({ data: res }))
-          .catch(err => {
-            reject(new Error(err.response.data.message || err.message))
-          })
-      })
+      return client.get(`/products/${id}/`)
     },
   },
 
   category: {
     list: (keyword, category) => {
-      return new Promise((resolve, reject) => {
-        client.get(`/categories/?keyword=${keyword}&category=${category}`)
-          .then(res => resolve({ data: res }))
-          .catch(err => {
-            reject(new Error(err.response.data.message || err.message))
-          })
-      })
+      return client.get(`/categories/?keyword=${keyword}&category=${category}`)
     }
   }
 }
-
-export default api

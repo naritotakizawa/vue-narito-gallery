@@ -1,7 +1,11 @@
 <template>
-  <section>
+  <div>
+    <figure v-if="selected" :key="selected.id" id="select-image">
+      <img :src="selected.src" :alt="selected.alt" />
+    </figure>
+
     <nav id="preview-container">
-      <figure v-for="image of currentProduct.image_set" :key="image.id">
+      <figure v-for="image of images" :key="image.id">
         <img
           class="preview"
           :src="image.src"
@@ -11,29 +15,20 @@
         />
       </figure>
     </nav>
-    <transition>
-      <figure v-if="selected" :key="selected.id">
-        <img id="select-image" :src="selected.src" :alt="selected.alt" />
-      </figure>
-    </transition>
-  </section>
+  </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 export default {
   name: "PreviewImage",
+  props: ["images"],
   data() {
     return {
       selected: {},
     };
   },
-  computed: {
-    ...mapState(["currentProduct"]),
-  },
   created() {
-    this.selected = this.currentProduct.image_set[0];
+    this.selected = this.images[0];
   },
   methods: {
     select(image) {
@@ -51,12 +46,6 @@ export default {
 </script>
 
 <style scoped>
-#masonry > * {
-  margin-bottom: 20px;
-  float: left;
-  max-width: 100%;
-}
-
 img {
   border-radius: 8px;
   width: 100%;
@@ -64,6 +53,7 @@ img {
 }
 
 #preview-container {
+  margin-top: 48px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -83,20 +73,18 @@ img {
 }
 
 .select {
-  border: solid 5px #766252;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #999;
 }
 
 #select-image {
-  margin: 20px auto 0 auto;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.6s ease;
-}
-.v-enter,
-.v-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
+@media (min-width: 1000px) {
+  #select-image {
+    width: 800px;
+    margin: 0 auto;
+  }
 }
 </style>

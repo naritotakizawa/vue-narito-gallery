@@ -1,8 +1,15 @@
 <template>
   <div id="app">
     <Header id="header" />
+    <img src="@/assets/circle.svg" id="circle1" />
     <router-view />
+    <img src="@/assets/circle.svg" id="circle2" />
     <Footer id="footer" />
+    <a id="back-to-top" v-scroll-to="'body'" href>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97.39 91.03">
+        <path class="cls-1" d="M2.75,88.28l46-85.53L94.64,88.28" />
+      </svg>
+    </a>
   </div>
 </template>
 
@@ -44,14 +51,48 @@ a:hover {
 .container {
   margin: 0 10px;
 }
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
   .container {
-    width: 1155px;
+    width: 1000px;
     margin: 0 auto;
   }
 }
 
-#footer {
-  margin-top: 100px;
+#circle1 {
+  margin: 48px auto 48px auto;
+  display: block;
+}
+
+#circle2 {
+  margin: 96px auto 96px auto;
+  display: block;
+}
+
+#back-to-top {
+  display: block;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  border-radius: 50%;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+}
+
+#back-to-top > svg {
+  width: 16px;
+}
+
+.cls-1 {
+  fill: none;
+  stroke: #999;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5.5px;
 }
 </style>

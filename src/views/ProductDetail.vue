@@ -1,83 +1,81 @@
 <template>
   <section class="container" v-if="currentProduct">
-    <ProductHeader class="product-header" />
-    <PreviewImage id="preview-image" />
-    <a id="to-preview-image" href="#preview-image">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97.39 91.03" id="to-preview-image-svg">
-        <path class="cls-1" d="M2.75,88.28l46-85.53L94.64,88.28" />
-      </svg>
-    </a>
+    <SimpleCard id="product-header" :data="currentProduct" />
+    <SNSIconList
+      id="sns"
+      :facebook="getFacebookShareURL"
+      :twitter="getTwitterShareURL"
+      :email="getEmailShareURL"
+    />
+    <PreviewImage id="preview-image" :images="currentProduct.image_set" />
   </section>
 </template>
 
 
 <script>
-import { mapState } from "vuex";
 import PreviewImage from "@/components/PreviewImage.vue";
-import ProductHeader from "@/components/ProductHeader.vue";
+import SimpleCard from "@/components/SimpleCard.vue";
+import SNSIconList from "@/components/SNSIconList.vue";
+import api from "@/api";
 
 export default {
   name: "ProductDetail",
+  data() {
+    return {
+      currentProduct: null,
+    };
+  },
   props: {
     id: {
       required: true,
     },
   },
   computed: {
-    ...mapState(["currentProduct"]),
+    getTwitterShareURL() {
+      return `https://twitter.com/intent/tweet?text=${this.currentProduct.title}&url=${document.URL}&via=toritoritorina`;
+    },
+    getFacebookShareURL() {
+      return `https://www.facebook.com/sharer/sharer.php?u=${document.URL}`;
+    },
+    getEmailShareURL() {
+      return `javascript:location.href='mailto:?Subject=${this.currentProduct.title}&body=' + document.URL;void(0);`;
+    },
   },
   mounted() {
-    this.$store
-      .dispatch("loadProductOne", { id: this.id })
-      .catch((err) => Promise.reject(err))
-      .then(() => {
+    api.product
+      .retrieve(this.id)
+      .then((res) => {
+        this.currentProduct = res.data;
         document.title = `${this.currentProduct.title} - gallery.narito`;
         document
           .querySelector('meta[name="description"]')
           .setAttribute("content", "");
+      })
+      .catch((err) => {
+        throw err;
       });
   },
 
   methods: {},
   components: {
     PreviewImage,
-    ProductHeader,
+    SimpleCard,
+    SNSIconList,
   },
 };
 </script>
 
 <style scoped>
-.product-header {
-  width: 300px;
-  margin: 40px auto 40px auto;
+#product-header {
+  margin: 96px auto 0 auto;
+}
+
+#sns {
+  margin-top: 48px;
   text-align: center;
 }
 
-#to-preview-image {
-  display: block;
-  width: 32px;
-  height: 32px;
-  padding: 4px;
-  border-radius: 50%;
-  background-color: #f5f5f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-}
-
-#to-preview-image-svg {
-  width: 16px;
-}
-
-.cls-1 {
-  fill: none;
-  stroke: #231815;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 5.5px;
+#preview-image {
+  margin-top: 48px;
 }
 </style>

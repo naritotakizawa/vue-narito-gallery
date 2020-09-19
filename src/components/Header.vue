@@ -1,42 +1,40 @@
 <template>
   <header>
-    <div class="container">
+    <h1>
       <a href="/">gallery.narito</a>
-    </div>
+    </h1>
+    <p>Webサイトやゲーム、デザイン、イラスト等を作成しています。</p>
   </header>
 </template>
 
 <script>
 export default {
   name: "Header",
-  data() {
-    return {};
-  },
-  computed: {},
-
-  created() {},
-  methods: {},
 };
 </script>
 
 
 <style scoped>
 header {
-  height: 80px;
-  background-color: #766252;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-a {
-  display: block;
-  color: #fff;
-  font-size: 27px;
+h1 {
+  font-size: 32px;
   font-family: professor, sans-serif;
   font-weight: 400;
   font-style: normal;
   text-decoration: none;
+  margin-top: 36px;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+p {
+  margin-top: 6px;
+  color: #999;
 }
 </style>

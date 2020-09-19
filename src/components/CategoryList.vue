@@ -1,40 +1,48 @@
 <template>
   <ul>
-    <li class="category" :class="{ select: isSelectedCategory({id:0, name: 'ALL'}) }">
-      <a class="name" @click.prevent="selectCategory({id: 0, name: 'ALL'})" href="#">ALL</a>
-      <span class="count">{{ productCount }}</span>
+    <li class="category" :class="{ select: isSelected(0) }">
+      <a class="name" @click.prevent="select({id: 0, name: 'ALL'})" href="#">ALL</a>
+      <span class="count">{{ allCount }}</span>
     </li>
     <li
       v-for="category in categories"
       :key="category.id"
       class="category"
-      :class="{ select: isSelectedCategory(category) }"
+      :class="{ select: isSelected(category.id) }"
     >
-      <a href="#" class="name" @click.prevent="selectCategory(category)">{{ category.name }}</a>
+      <a href="#" class="name" @click.prevent="select(category)">{{ category.name }}</a>
       <span class="count">{{ category.product_count }}</span>
     </li>
   </ul>
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
-
 export default {
   name: "CategoryList",
+  props: ["categories", "initial"],
+  data() {
+    return {
+      selected: this.initial ? this.initial : { id: 0, name: "ALL" },
+    };
+  },
   computed: {
-    ...mapState(["categories", "keyword"]),
-    ...mapGetters(["isSelectedCategory", "productCount"]),
+    allCount() {
+      return this.categories.reduce(function (prev, category) {
+        return prev + category.product_count;
+      }, 0);
+    },
   },
   methods: {
-    selectCategory(category) {
-      this.$router.push({
-        name: "home",
-        query: {
-          keyword: this.keyword,
-          category: category.id,
-          page: 1,
-        },
-      });
+    isSelected(id) {
+      if (this.selected.id === id) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    select(category) {
+      this.selected = category;
+      this.$emit("click", category);
     },
   },
 };
@@ -51,23 +59,18 @@ li {
 }
 
 .category {
-  padding: 8px 16px;
+  margin: 0 16px 8px 0;
   font-family: roboto, sans-serif;
   font-weight: 400;
   font-style: normal;
-  border-radius: 8px;
+  border: none;
 }
 
 .select {
-  background-color: #766252;
-  color: #fff;
+  border-bottom: solid 1px #333;
 }
 
-.select > a.name {
-  color: #fff;
-}
-
-.category > .name {
+.name {
   font-size: 16px;
   text-decoration: none;
   color: #333;
@@ -75,7 +78,7 @@ li {
   vertical-align: middle;
 }
 
-.category > .count {
+.count {
   font-size: 10px;
   display: inline-block;
   margin-left: 3px;

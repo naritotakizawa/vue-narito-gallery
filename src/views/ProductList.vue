@@ -210,6 +210,10 @@ export default {
   margin-top: 48px;
 }
 
+#search {
+  margin-top: 12px;
+}
+
 @media (min-width: 1000px) {
   #filter {
     display: grid;
@@ -226,6 +230,7 @@ export default {
   #search {
     grid-column: 1;
     justify-self: end;
+    align-self: center;
     grid-row: 1;
     margin-top: 0;
   }

@@ -59,7 +59,7 @@ li {
 }
 
 .category {
-  margin: 0 16px 8px 0;
+  padding: 6px 12px;
   font-family: roboto, sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -67,7 +67,7 @@ li {
 }
 
 .select {
-  border-bottom: solid 1px #333;
+  background-color: #f5f5f5;
 }
 
 .name {

@@ -262,11 +262,15 @@ img {
 
 .v-enter-active,
 .v-leave-active {
-  transition: all 0.6s ease;
+  transition: all 1s ease;
 }
-.v-enter,
 .v-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(-50px);
+}
+
+.v-enter {
+  opacity: 0;
+  transform: translateY(50px);
 }
 </style>

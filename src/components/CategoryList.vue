@@ -1,7 +1,9 @@
 <template>
   <ul>
     <li class="category" :class="{ select: isSelected(0) }">
-      <a class="name" @click.prevent="select({id: 0, name: 'ALL'})" href="#">ALL</a>
+      <a class="name" @click.prevent="select({ id: 0, name: 'ALL' })" href="#"
+        >ALL</a
+      >
       <span class="count">{{ allCount }}</span>
     </li>
     <li
@@ -10,7 +12,9 @@
       class="category"
       :class="{ select: isSelected(category.id) }"
     >
-      <a href="#" class="name" @click.prevent="select(category)">{{ category.name }}</a>
+      <a href="#" class="name" @click.prevent="select(category)">{{
+        category.name
+      }}</a>
       <span class="count">{{ category.product_count }}</span>
     </li>
   </ul>
@@ -59,7 +63,7 @@ li {
 }
 
 .category {
-  padding: 6px 12px;
+  padding: 6px 16px;
   font-family: roboto, sans-serif;
   font-weight: 400;
   font-style: normal;

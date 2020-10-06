@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-show="!id">
-      <h1 id="pege-title">製作物の一覧</h1>
+      <h1 id="page-title">製作物の一覧</h1>
       <nav id="filter">
         <CategoryList
           id="category-list"

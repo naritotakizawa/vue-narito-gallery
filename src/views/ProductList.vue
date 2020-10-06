@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div v-show="!id">
+      <h1 id="pege-title">製作物の一覧</h1>
       <nav id="filter">
         <CategoryList
           id="category-list"
@@ -13,7 +14,7 @@
 
       <transition-group tag="div" class="products">
         <router-link
-          :to="{name: 'detail', params: { id: product.id }}"
+          :to="{ name: 'detail', params: { id: product.id } }"
           v-for="product in products.results"
           :key="product.id"
           :title="product.title"
@@ -24,9 +25,15 @@
         </router-link>
       </transition-group>
 
-      <nav v-if="products.next" id="load-more">
-        <router-link :to="getNextURL">もっと見る</router-link>
-      </nav>
+      <infinite-loading
+        ref="infiniteLoading"
+        spinner="circle"
+        @infinite="loadMore"
+        v-if="isLoadeable"
+      >
+        <span slot="no-more">end</span>
+        <span slot="no-results">end</span>
+      </infinite-loading>
     </div>
     <router-view />
   </div>
@@ -36,6 +43,7 @@
 import Search from "@/components/Search.vue";
 import CategoryList from "@/components/CategoryList.vue";
 import api from "@/api";
+import InfiniteLoading from "vue-infinite-loading";
 
 export default {
   name: "ProductList",
@@ -99,19 +107,8 @@ export default {
       selectedCategory: { id: 0, name: "ALL" },
       keyword: "",
       pageNumber: 1,
+      isLoadeable: false,
     };
-  },
-  computed: {
-    getNextURL() {
-      return this.$router.resolve({
-        name: "home",
-        query: {
-          keyword: this.keyword,
-          category: this.selectedCategory.id,
-          page: this.pageNumber + 1,
-        },
-      }).route.fullPath;
-    },
   },
   methods: {
     // URLのパラメータをもとに、キーワードやカテゴリなどをdataにセット
@@ -147,6 +144,9 @@ export default {
         .list(this.keyword, this.selectedCategory.id, this.pageNumber)
         .then((res) => {
           this.products = res.data;
+          if (res.data.next) {
+            this.isLoadeable = true;
+          }
         })
         .catch((err) => {
           throw err;
@@ -161,8 +161,10 @@ export default {
           }
           if (res.data.next) {
             this.products.next = res.data.next;
+            this.$refs.infiniteLoading.stateChanger.loaded();
           } else {
             this.products.next = null;
+            this.$refs.infiniteLoading.stateChanger.complete();
           }
         })
         .catch((err) => {
@@ -179,6 +181,20 @@ export default {
         .catch((err) => {
           throw err;
         });
+    },
+
+    loadMore() {
+      // スクロールで呼ばれる次のデータ取得用メソッド
+      // 初回データの取得後にisLoadableがtrueになると、
+      // このメソッドがスクロールで呼ばれるようになる
+      this.$router.push({
+        name: "home",
+        query: {
+          keyword: this.keyword,
+          category: this.selectedCategory.id,
+          page: this.pageNumber + 1,
+        },
+      });
     },
   },
 
@@ -200,14 +216,19 @@ export default {
   components: {
     Search,
     CategoryList,
+    InfiniteLoading,
   },
 };
 </script>
 
 
 <style scoped>
+#page-title {
+  font-size: 24px;
+  font-weight: bold;
+}
 #filter {
-  margin-top: 48px;
+  margin-top: 12px;
 }
 
 #search {
@@ -223,7 +244,7 @@ export default {
 
   #category-list {
     grid-column: 1;
-    justify-self: center;
+    justify-self: start;
     grid-row: 1;
   }
 
@@ -237,7 +258,7 @@ export default {
 }
 
 .products {
-  margin-top: 24px;
+  margin-top: 96px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 12px;

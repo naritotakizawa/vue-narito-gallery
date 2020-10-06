@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <Header id="header" />
-    <img src="@/assets/circle.svg" id="circle1" />
     <router-view />
-    <img src="@/assets/circle.svg" id="circle2" />
     <Footer id="footer" />
     <a id="back-to-top" v-scroll-to="'body'" href>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97.39 91.03">
@@ -58,14 +56,12 @@ a:hover {
   }
 }
 
-#circle1 {
-  margin: 48px auto 48px auto;
-  display: block;
+#header {
+  margin-bottom: 96px;
 }
 
-#circle2 {
-  margin: 96px auto 96px auto;
-  display: block;
+#footer {
+  margin-top: 200px;
 }
 
 #back-to-top {

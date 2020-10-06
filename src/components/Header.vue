@@ -1,9 +1,8 @@
 <template>
   <header>
-    <h1>
-      <a href="/">gallery.narito</a>
-    </h1>
-    <p>Webサイトやゲーム、デザイン、イラスト等を作成しています。</p>
+    <div class="container">
+      <h1><a href="/">gallery.narito</a></h1>
+    </div>
   </header>
 </template>
 
@@ -16,21 +15,23 @@ export default {
 
 <style scoped>
 header {
-  text-align: center;
+  height: 41px;
+  background-color: #333;
+  display: flex;
+  align-items: center;
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 21px;
   font-family: professor, sans-serif;
   font-weight: 400;
   font-style: normal;
   text-decoration: none;
-  margin-top: 36px;
 }
 
 a {
   text-decoration: none;
-  color: #333;
+  color: #fff;
 }
 
 p {

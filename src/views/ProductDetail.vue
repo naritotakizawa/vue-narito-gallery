@@ -1,29 +1,55 @@
 <template>
-  <section class="container" v-if="currentProduct">
-    <SimpleCard id="product-header" :data="currentProduct" />
-    <SNSIconList
-      id="sns"
-      :facebook="getFacebookShareURL"
-      :twitter="getTwitterShareURL"
-      :email="getEmailShareURL"
-    />
-    <PreviewImage id="preview-image" :images="currentProduct.image_set" />
-  </section>
+  <transition>
+    <article v-if="product" id="container" :key="product.id">
+      <figure :key="index" id="current-image">
+        <img :src="getCurrentImage.src" :alt="getCurrentImage.alt" />
+      </figure>
+      <header class="content">
+        <h1>{{ product.title }}</h1>
+        <p class="meta">
+          {{ product.category.name }} / {{ product.created_at | date }}
+        </p>
+        <div class="text" v-html="product.text"></div>
+      </header>
+      <a
+        class="back"
+        v-scroll-to="{ el: '#current-image', container: '#container' }"
+        href
+      >
+        <i class="icon-up-open icon icon-big"></i>
+      </a>
+      <router-link :to="{ name: 'home' }" id="close">
+        <i class="icon-cancel icon icon-big"></i>
+      </router-link>
+
+      <a id="prev" href @click.prevent="index--" v-if="hasPrev">
+        <i class="icon-left-open icon icon-big"></i>
+      </a>
+      <a id="next" href @click.prevent="index++" v-if="hasNext">
+        <i class="icon-right-open icon icon-big"></i>
+      </a>
+    </article>
+  </transition>
 </template>
 
 
 <script>
-import PreviewImage from "@/components/PreviewImage.vue";
-import SimpleCard from "@/components/SimpleCard.vue";
-import SNSIconList from "@/components/SNSIconList.vue";
 import api from "@/api";
 
 export default {
   name: "ProductDetail",
   data() {
     return {
-      currentProduct: null,
+      product: null,
+      index: 0,
     };
+  },
+
+  filters: {
+    date: function (value) {
+      const date = new Date(value);
+      return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+    },
   },
   props: {
     id: {
@@ -31,22 +57,27 @@ export default {
     },
   },
   computed: {
-    getTwitterShareURL() {
-      return `https://twitter.com/intent/tweet?text=${this.currentProduct.title}&url=${document.URL}&via=toritoritorina`;
+    getCurrentImage() {
+      if (this.product.image_set.length === 0) {
+        return this.product;
+      }
+      return this.product.image_set[this.index];
     },
-    getFacebookShareURL() {
-      return `https://www.facebook.com/sharer/sharer.php?u=${document.URL}`;
+
+    hasNext() {
+      return this.index < this.product.image_set.length - 1;
     },
-    getEmailShareURL() {
-      return `javascript:location.href='mailto:?Subject=${this.currentProduct.title}&body=' + document.URL;void(0);`;
+
+    hasPrev() {
+      return this.index !== 0;
     },
   },
   mounted() {
     api.product
       .retrieve(this.id)
       .then((res) => {
-        this.currentProduct = res.data;
-        document.title = `${this.currentProduct.title} - gallery.narito`;
+        this.product = res.data;
+        document.title = `${this.product.title} - gallery.narito`;
         document
           .querySelector('meta[name="description"]')
           .setAttribute("content", "");
@@ -57,25 +88,123 @@ export default {
   },
 
   methods: {},
-  components: {
-    PreviewImage,
-    SimpleCard,
-    SNSIconList,
-  },
 };
 </script>
 
 <style scoped>
-#product-header {
-  margin: 96px auto 0 auto;
+article {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow: scroll;
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
 }
 
-#sns {
-  margin-top: 48px;
-  text-align: center;
+#current-image {
+  width: 100%;
+  margin: 0 auto;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+@media (min-width: 1000px) {
+  #current-image {
+    max-width: 600px;
+    margin: 30px auto 0 auto;
+  }
 }
 
-#preview-image {
-  margin-top: 48px;
+header {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
+#close {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+#prev {
+  position: fixed;
+  left: 10px;
+  top: calc(50% - 50px);
+}
+
+#next {
+  position: fixed;
+  right: 10px;
+  top: calc(50% - 50px);
+}
+
+@media (min-width: 768px) {
+  header {
+    top: 30px;
+    right: 60px;
+  }
+
+  #close {
+    top: 30px;
+    left: 60px;
+  }
+
+  #prev {
+    left: 60px;
+  }
+
+  #next {
+    right: 60px;
+  }
+}
+
+.content {
+  text-align: right;
+}
+
+h1 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 20px;
+  font-family: fot-cezanne-pron, sans-serif;
+}
+
+.meta {
+  font-family: futura-pt, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #999;
+  margin-top: 3px;
+}
+
+.text {
+  width: 200px;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  font-size: 12px;
+  margin-top: 3px;
+  margin-left: auto;
+}
+
+>>> p + p {
+  margin-top: 0.5em;
+}
+
+>>> ul {
+  margin-top: 0.5em;
+  padding: 0;
+  list-style-type: none;
+}
+
+>>> a {
+  text-decoration: underline;
+  color: blue;
 }
 </style>

@@ -16,6 +16,7 @@ export default {
 
 <style scoped>
 footer {
+  font-family: futura-pt, sans-serif;
   height: 64px;
   background-color: #333;
   display: flex;
@@ -24,7 +25,6 @@ footer {
 
 p {
   color: #fff;
-  font-family: roboto, sans-serif;
   font-size: 14px;
   font-weight: 400;
   font-style: normal;

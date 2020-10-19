@@ -116,9 +116,7 @@ img {
 }
 
 header {
-  position: fixed;
-  top: 10px;
-  right: 10px;
+  display: none;
 }
 
 #close {
@@ -140,11 +138,6 @@ header {
 }
 
 @media (min-width: 768px) {
-  header {
-    top: 30px;
-    right: 60px;
-  }
-
   #close {
     top: 30px;
     left: 60px;
@@ -156,6 +149,16 @@ header {
 
   #next {
     right: 60px;
+  }
+}
+
+@media (min-width: 1000px) {
+  header {
+    display: block;
+    top: 30px;
+    right: 60px;
+    position: fixed;
+    width: 200px;
   }
 }
 

@@ -514,7 +514,7 @@ footer {
   margin-top: 200px;
 }
 
-p {
+footer p {
   color: #fff;
   font-size: 14px;
   font-weight: 400;

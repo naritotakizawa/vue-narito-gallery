@@ -11,13 +11,7 @@
         </p>
         <div class="text" v-html="product.text"></div>
       </header>
-      <a
-        class="back"
-        v-scroll-to="{ el: '#current-image', container: '#container' }"
-        href
-      >
-        <i class="icon-up-open icon icon-big"></i>
-      </a>
+
       <router-link :to="{ name: 'home' }" id="close">
         <i class="icon-cancel icon icon-big"></i>
       </router-link>
@@ -99,7 +93,6 @@ article {
   right: 0;
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.9);
-  overflow: scroll;
   z-index: 3;
 
   display: flex;
@@ -112,12 +105,13 @@ article {
 }
 img {
   width: 100%;
-  height: auto;
+  max-height: 100vh;
+  object-fit: cover;
+  object-position: top;
 }
 @media (min-width: 1000px) {
   #current-image {
     max-width: 600px;
-    margin: 30px auto 0 auto;
   }
 }
 

@@ -140,6 +140,30 @@ header {
 @media (min-width: 768px) {
   #close {
     top: 30px;
+    left: 10px;
+  }
+
+  #prev {
+    left: 10px;
+  }
+
+  #next {
+    right: 10px;
+  }
+}
+
+@media (min-width: 1000px) {
+  header {
+    display: block;
+    top: 30px;
+    right: 20px;
+    position: fixed;
+    width: 200px;
+  }
+}
+
+@media (min-width: 1100px) {
+  #close {
     left: 60px;
   }
 
@@ -150,15 +174,8 @@ header {
   #next {
     right: 60px;
   }
-}
-
-@media (min-width: 1000px) {
   header {
-    display: block;
-    top: 30px;
     right: 60px;
-    position: fixed;
-    width: 200px;
   }
 }
 

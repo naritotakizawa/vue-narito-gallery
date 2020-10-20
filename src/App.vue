@@ -65,7 +65,7 @@ a:hover {
   font-size: 32px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1100px) {
   .back {
     right: 60px;
   }

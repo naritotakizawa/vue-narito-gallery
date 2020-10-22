@@ -70,7 +70,6 @@
           <figure>
             <img :src="product.thumbnail" :alt="product.title" />
           </figure>
-          <h2>{{ product.title }}</h2>
           <p>{{ product.category.name }} / {{ product.created_at | date }}</p>
         </router-link>
       </transition-group>
@@ -454,13 +453,6 @@ main {
   width: 100%;
   height: auto;
   margin-top: 60px;
-}
-
-.products h2 {
-  font-size: 15px;
-  font-weight: 500;
-  margin-top: 20px;
-  font-family: fot-cezanne-pron, sans-serif;
 }
 
 .products p {

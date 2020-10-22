@@ -195,7 +195,6 @@ h1 {
   font-weight: 400;
   font-size: 12px;
   color: #999;
-  margin-top: 3px;
 }
 
 .text {

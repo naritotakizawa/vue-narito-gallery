@@ -199,6 +199,7 @@ h1 {
 
 .text {
   width: 200px;
+  font-family: fot-cezanne-pron, sans-serif;
   text-align: justify;
   text-justify: inter-ideograph;
   font-size: 12px;

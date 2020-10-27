@@ -20,9 +20,6 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: #333;
-  font-family: source-han-sans-japanese, sans-serif;
-  font-weight: 400;
-  font-style: normal;
 }
 
 a {

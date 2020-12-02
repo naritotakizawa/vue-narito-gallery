@@ -1,5 +1,7 @@
 # vue-narito-gallery
-ギャラリーサイト。Vue製。実際に動いている感じは[こちら](https://gallery.narito.ninja)
+Vue.jsで作った、作品の展示などに使うサイト
+
+![](https://narito.ninja/uploader/home/public/gif/gallery.gif)
 
 ## とりあえず動かしてみたい方
 

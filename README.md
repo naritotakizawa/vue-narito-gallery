@@ -1,7 +1,11 @@
 # vue-narito-gallery
 Vue.jsで作った、作品の展示などに使うサイト
 
-![](https://narito.ninja/uploader/home/public/gif/gallery.gif)
+![Screenshot_2020-12-02 マイクロブタカフェ - gallery narito](https://user-images.githubusercontent.com/28292340/100850365-0f9cc280-34c7-11eb-8653-d5054bdf88dd.jpg)
+
+![Screenshot_2020-12-02 マイクロブタカフェ - gallery narito(1)](https://user-images.githubusercontent.com/28292340/100850374-11ff1c80-34c7-11eb-8745-42ac782e2a20.jpg)
+
+
 
 ## とりあえず動かしてみたい方
 

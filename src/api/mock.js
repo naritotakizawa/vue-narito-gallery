@@ -7,7 +7,7 @@ const products1 = {
     previous: null,
     results: [
         {
-            id: 1, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/1',
+            id: 1, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978262-ec2c0180-3c96-11eb-9136-bc9b6131d5cf.png',
             category: {
                 id: 4,
                 name: 'Photo'
@@ -15,35 +15,35 @@ const products1 = {
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 2, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/2', category: {
+            id: 2, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978279-0960d000-3c97-11eb-918f-efa54da99226.png', category: {
                 id: 4,
                 name: 'Photo'
             },
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 3, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/3', category: {
+            id: 3, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978298-209fbd80-3c97-11eb-8794-628038b482b2.png', category: {
                 id: 4,
                 name: 'Photo'
             },
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 4, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/4', category: {
+            id: 4, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978311-34e3ba80-3c97-11eb-8e7c-1db7796a356d.png', category: {
                 id: 4,
                 name: 'Photo'
             },
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 5, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/5', category: {
+            id: 5, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978321-46c55d80-3c97-11eb-88d4-785aee6b786a.png', category: {
                 id: 4,
                 name: 'Photo'
             },
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 6, title: 'ででにー', thumbnail: 'https://narito.ninja/uploader/home/public/desuni/6', category: {
+            id: 6, title: 'ででにー', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978454-6e68f580-3c98-11eb-8f6f-9afdaadb2589.png', category: {
                 id: 4,
                 name: 'Photo'
             },
@@ -58,7 +58,7 @@ const products2 = {
     previous: null,
     results: [
         {
-            id: 7, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/1',
+            id: 7, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978262-ec2c0180-3c96-11eb-9136-bc9b6131d5cf.png',
             category: {
                 id: 4,
                 name: 'Photo'
@@ -66,35 +66,35 @@ const products2 = {
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 8, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/2', category: {
+            id: 8, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978279-0960d000-3c97-11eb-918f-efa54da99226.png', category: {
                 id: 4,
                 name: 'Photo'
             },
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 9, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/3', category: {
+            id: 9, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978298-209fbd80-3c97-11eb-8794-628038b482b2.png', category: {
                 id: 4,
                 name: 'Photo'
             },
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 10, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/4', category: {
+            id: 10, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978311-34e3ba80-3c97-11eb-8e7c-1db7796a356d.png', category: {
                 id: 4,
                 name: 'Photo'
             },
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 11, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/5', category: {
+            id: 11, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978321-46c55d80-3c97-11eb-88d4-785aee6b786a.png', category: {
                 id: 4,
                 name: 'Photo'
             },
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 12, title: 'ででにー', thumbnail: 'https://narito.ninja/uploader/home/public/desuni/6', category: {
+            id: 12, title: 'ででにー', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978454-6e68f580-3c98-11eb-8f6f-9afdaadb2589.png', category: {
                 id: 4,
                 name: 'Photo'
             },
@@ -110,7 +110,7 @@ const products3 = {
     previous: null,
     results: [
         {
-            id: 13, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/1',
+            id: 13, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978262-ec2c0180-3c96-11eb-9136-bc9b6131d5cf.png',
             category: {
                 id: 4,
                 name: 'Photo'
@@ -118,35 +118,35 @@ const products3 = {
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 14, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/2', category: {
+            id: 14, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978279-0960d000-3c97-11eb-918f-efa54da99226.png', category: {
                 id: 4,
                 name: 'Photo'
             },
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 15, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/3', category: {
+            id: 15, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978298-209fbd80-3c97-11eb-8794-628038b482b2.png', category: {
                 id: 4,
                 name: 'Photo'
             },
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 16, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/4', category: {
+            id: 16, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978311-34e3ba80-3c97-11eb-8e7c-1db7796a356d.png', category: {
                 id: 4,
                 name: 'Photo'
             },
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 17, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/5', category: {
+            id: 17, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978321-46c55d80-3c97-11eb-88d4-785aee6b786a.png', category: {
                 id: 4,
                 name: 'Photo'
             },
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 18, title: 'ででにー', thumbnail: 'https://narito.ninja/uploader/home/public/desuni/6', category: {
+            id: 18, title: 'ででにー', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978454-6e68f580-3c98-11eb-8f6f-9afdaadb2589.png', category: {
                 id: 4,
                 name: 'Photo'
             },
@@ -160,7 +160,7 @@ const products4 = {
     previous: null,
     results: [
         {
-            id: 19, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/1',
+            id: 19, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978262-ec2c0180-3c96-11eb-9136-bc9b6131d5cf.png',
             category: {
                 id: 4,
                 name: 'Photo'
@@ -168,7 +168,7 @@ const products4 = {
             created_at: "2020-08-23T21:05:40+09:00",
         },
         {
-            id: 20, title: 'マイクロブタカフェ', thumbnail: 'https://narito.ninja/uploader/home/public/buta/2', category: {
+            id: 20, title: 'マイクロブタカフェ', thumbnail: 'https://user-images.githubusercontent.com/28292340/101978279-0960d000-3c97-11eb-918f-efa54da99226.png', category: {
                 id: 4,
                 name: 'Photo'
             },
@@ -188,7 +188,7 @@ const categories = [
 const product1 = {
     id: 1,
     title: 'マイクロブタカフェ',
-    thumbnail: 'https://narito.ninja/uploader/home/public/buta/1',
+    thumbnail: 'https://user-images.githubusercontent.com/28292340/101978262-ec2c0180-3c96-11eb-9136-bc9b6131d5cf.png',
     category: {
         id: 4,
         name: 'Photo'
@@ -198,30 +198,30 @@ const product1 = {
     image_set: [
         {
             id: 1,
-            src: 'https://narito.ninja/uploader/home/public/buta/6',
+            src: 'https://user-images.githubusercontent.com/28292340/101978327-56dd3d00-3c97-11eb-9c67-b33b7f03409e.png',
             alt: 'ぶた1',
 
         },
         {
             id: 2,
-            src: 'https://narito.ninja/uploader/home/public/buta/7',
+            src: 'https://user-images.githubusercontent.com/28292340/101978332-5b095a80-3c97-11eb-9ccf-549d2f032a6d.png',
             alt: 'ぶた2',
         },
         {
             id: 3,
-            src: 'https://narito.ninja/uploader/home/public/buta/8',
+            src: 'https://user-images.githubusercontent.com/28292340/101978335-5e044b00-3c97-11eb-8d01-a218fae082cb.png',
             alt: 'ぶた3',
 
         },
         {
             id: 4,
-            src: 'https://narito.ninja/uploader/home/public/buta/9',
+            src: 'https://user-images.githubusercontent.com/28292340/101978340-678db300-3c97-11eb-84fa-693b67201be7.png',
             alt: 'ぶた4',
 
         },
         {
             id: 5,
-            src: 'https://narito.ninja/uploader/home/public/buta/10',
+            src: 'https://user-images.githubusercontent.com/28292340/101978342-6bb9d080-3c97-11eb-9b81-36d61b1c8868.png',
             alt: 'ぶた5',
         },
     ]
